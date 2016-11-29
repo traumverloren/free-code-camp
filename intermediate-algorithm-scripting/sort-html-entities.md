@@ -5,12 +5,8 @@ Convert the characters `&, <, >, "` (double quote), and `'` (apostrophe), in a s
 function convertHTML(str) {
   var chars = {"&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&apos;"};
 
-  function replaceChars(match) {
-    return chars[match];
-  }
-
   return str.split('').map(function(letter) {
-    return letter.replace(/[^\w\s]/, replaceChars);
+    return chars[letter] || letter;
   }).join('');
 
 }
