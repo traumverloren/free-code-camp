@@ -14,15 +14,21 @@ If either argument isn't a valid number, return undefined.
 
 ```javascript
 function addTogether() {
+  // put arguments into array to be able to call array functions on them
   var args = Array.from(arguments);
 
-  // check that 2 arguments and all args are numbers
   return args.some(function(arg) {
     return typeof arg !== 'number'; }) ?
+    // return undefined if any of the arguments aren't numbers
+    // else check for > 1 arguments
     undefined : args.length > 1 ?
+    // if > 1 arguments sum arguments and return the sum
     args.reduce(function(a,b) {
       return a += b; }, 0) :
+    // else check if second argument outside of args array
     function(b) { return typeof b === 'number' ?
+    // if there is & a number, add it to first sum
+    // else, return undefined if it's not a number
       b + args[0] : undefined;
     };
 }
